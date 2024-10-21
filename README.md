@@ -19,11 +19,15 @@ A versão do NodeJS utilizada neste projeto foi a v18.18.0.
 ```bash
 yarn install
 ```
-2. Iniciar a aplicação
+2. Rodar as migrações
+```bash
+yarn migrations
+```
+3. Iniciar a aplicação
 ```bash
 yarn start
 ```
-3. Para iniciar a aplicação na porta 3000 usando docker compose, utilize o comando abaixo:
+4. Para iniciar a aplicação na porta 3000 usando docker compose, utilize o comando abaixo:
 ```bash
 PORT=3000 docker compose up
 ```
