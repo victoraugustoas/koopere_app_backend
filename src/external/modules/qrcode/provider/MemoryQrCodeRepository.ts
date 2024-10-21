@@ -21,6 +21,7 @@ export class MemoryQrCodeRepository implements QrCodeRepository {
       total: this.qrCodes.length,
       data: qrCodes,
       page: pagination.page,
+      limit: pagination.limit,
     };
 
     return Result.ok(result);

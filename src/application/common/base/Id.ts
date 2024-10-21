@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Result } from './Result';
 import { VO, VOConfig } from './ValueObject';
 
@@ -7,8 +8,7 @@ export interface IdProps extends VOConfig {
 
 export class Id extends VO<string, IdProps> {
   constructor(props: IdProps, cfg?: VOConfig) {
-    // TODO change this to uuid
-    super(props.value ?? '', cfg);
+    super(props.value ?? uuidv4(), cfg);
   }
 
   static new(props: IdProps, cfg?: VOConfig): Result<Id> {
