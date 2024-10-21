@@ -6,4 +6,6 @@ export abstract class QrCodeRepository {
   abstract findAll(
     pagination: Pageable,
   ): Promise<Result<PageableResponse<QrCode[]>>>;
+
+  abstract create(qr: QrCode): Promise<Result<void>>;
 }
