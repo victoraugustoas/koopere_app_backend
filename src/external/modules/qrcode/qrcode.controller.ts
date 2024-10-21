@@ -17,7 +17,7 @@ import {
   ListQrCodeResponse,
 } from './types/listQrCode.interface';
 
-@Controller('qrcode')
+@Controller('api/qrcode')
 export class QrCodeController {
   constructor(private readonly qrCodeRepo: QrCodeRepository) {}
 
@@ -27,8 +27,8 @@ export class QrCodeController {
   ): Promise<ListQrCodeResponse> {
     const useCase = new ListQrCodes(this.qrCodeRepo);
     const result = await useCase.execute({
-      limit: query.limit ?? 10,
-      page: query.page ?? 0,
+      limit: Number(query.limit) ?? 10,
+      page: Number(query.page) ?? 0,
     });
     if (result.itWorked) {
       const mappedResult = result.instance.data.map((qrcode) =>
