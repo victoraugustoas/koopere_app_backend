@@ -1,9 +1,7 @@
-import {
-  Pageable,
-  PageableResponse,
-} from '../../../../application/common/types/Pageable';
+import { PageableResponse } from '../../../../application/common/types/Pageable';
+import { Pageable } from '../../../common/types/pageable';
 import { QrCodeDTO } from '../dtos/qrcode.dto';
 
-export interface ListQrCodeRequest extends Partial<Pageable> {}
+export class ListQrCodeRequest extends Pageable {}
 
 export interface ListQrCodeResponse extends PageableResponse<QrCodeDTO[]> {}

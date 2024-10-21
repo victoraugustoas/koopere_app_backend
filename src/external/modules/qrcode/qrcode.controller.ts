@@ -7,6 +7,8 @@ import {
   HttpStatus,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { QrCodeRepository } from '../../../application/qrcode/provider/QrCodeRepository';
 import { CreateQrCode } from '../../../application/qrcode/usecases/CreateQrCode';
@@ -24,13 +26,14 @@ export class QrCodeController {
   constructor(private readonly qrCodeRepo: QrCodeRepository) {}
 
   @Get()
+  @UsePipes(new ValidationPipe({ transform: true }))
   async findAll(
     @Query() query: ListQrCodeRequest,
   ): Promise<ListQrCodeResponse> {
     const useCase = new ListQrCodes(this.qrCodeRepo);
     const result = await useCase.execute({
-      limit: Number(query.limit) ?? 10,
-      page: Number(query.page) ?? 0,
+      limit: query.limit ?? 10,
+      page: query.page ?? 0,
     });
     if (result.itWorked) {
       const mappedResult = result.instance.data.map((qrcode) =>
@@ -38,8 +41,9 @@ export class QrCodeController {
       );
       return { ...result.instance, data: mappedResult };
     } else {
-      // TODO format http error
-      result.throwErrorIfError();
+      throw new BadRequestException(
+        result.errors.map((error) => ErrorMapperDTO.mapper(error).toJSON()),
+      );
     }
   }
 
