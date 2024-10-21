@@ -1,0 +1,15 @@
+# ignore local deps
+node_modules
+npm-debug.log
+yarn-error.log
+
+# ignore pre-exists build
+dist
+
+# ignore IDE config
+.vscode
+.idea
+*.swp
+
+# ignore logs
+*.log
