@@ -26,7 +26,7 @@ docker compose up
 ```
 4. Execute as migrations
 ```bash
-docker compose exec app yarn migrations 
+docker compose exec app yarn migrations
 ```
 5. A aplicação está pronta para responder
 
