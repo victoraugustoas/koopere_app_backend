@@ -17,18 +17,6 @@ COPY . .
 # Build the NestJS application
 RUN yarn build
 
-# Stage 2: Run the application
-FROM node:18-alpine
-
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy the build output and node_modules from the builder stage
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/yarn.lock ./
-
 # Expose the application port (default is 3000 for NestJS)
 EXPOSE 3000
 
@@ -36,4 +24,4 @@ EXPOSE 3000
 ENV NODE_ENV=production
 
 # Run the application
-CMD ["node", "dist/main"]
+CMD ["node", "dist/src/main"]

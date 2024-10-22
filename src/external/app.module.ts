@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { QrCodeModule } from './modules/qrcode/qrcode.module';
+import { CommonsModule } from './common/commons.module';
 
 @Module({
-  imports: [QrCodeModule],
+  imports: [CommonsModule, QrCodeModule],
   controllers: [],
   providers: [],
 })

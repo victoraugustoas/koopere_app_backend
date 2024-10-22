@@ -3,9 +3,26 @@ version: '3.8'
 services:
   app:
     environment:
-      - PORT
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      PORT: ${PORT}
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+      - db
     ports:
       - '${PORT}:${PORT}'
+  db:
+    image: postgres:latest
+    container_name: koopere_db
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
+    ports:
+      - '${DATABASE_PORT}:${DATABASE_PORT}'
