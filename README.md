@@ -62,3 +62,7 @@ docker compose exec app yarn migrations
 - Adicionar tratamento de erros provenientes da camada de aplicação
 - Adicionar implementação de repositório para banco de dados
 
+### Estrutura
+![Clean Architecture](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
+
+A estrutura do projeto é projetada para garantir uma clara separação entre a **camada de regras de negócio** e a **camada externa**, que está sujeita a constantes mudanças ao longo do tempo. Isso nos permite evoluir a aplicação em termos de novas tecnologias e ferramentas sem comprometer a manutenibilidade do código, evitando complexidades desnecessárias.
