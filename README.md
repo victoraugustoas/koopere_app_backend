@@ -15,22 +15,20 @@ A versão do NodeJS utilizada neste projeto foi a v18.18.0.
 
 ## Iniciando projeto
 
-1. Instalação das dependências
+1. Para iniciar a aplicação usando docker compose localmente, siga os passos abaixo
+2. Crie um arquivo `.env` baseado no `.env.example`
 ```bash
-yarn install
+cp .env.example .env
 ```
-2. Rodar as migrações
+3. Execute a aplicação
 ```bash
-yarn migrations
+docker compose up
 ```
-3. Iniciar a aplicação
+4. Execute as migrations
 ```bash
-yarn start
+docker compose exec app yarn migrations 
 ```
-4. Para iniciar a aplicação na porta 3000 usando docker compose, utilize o comando abaixo:
-```bash
-PORT=3000 docker compose up
-```
+5. A aplicação está pronta para responder
 
 ## Estrutura do Projeto
 ```bash
